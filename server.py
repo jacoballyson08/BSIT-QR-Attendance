@@ -1,6 +1,9 @@
 from flask import Flask, request, jsonify
 from datetime import datetime
 import os
+import pytz
+
+philippines = pytz.timezone("Asia/Manila")
 
 app = Flask(__name__)
 
@@ -26,7 +29,7 @@ def mark():
     data = request.json
     student_id = data["student_id"]
 
-    now = datetime.now()
+    now = datetime.now(philippines)
     date_today = now.strftime("%Y-%m-%d")
 
     # get student name (fallback if not found)
